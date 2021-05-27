@@ -1,0 +1,11 @@
+<h2>Persons List</h2>
+<ul>
+    <li *ngFor="let person of personList">
+        <app-person [person]="person"></app-person>
+    </li>
+</ul>
+
+<input placeholder="New person to add..." #txtPersonName />
+<button (click)="addNewPerson(txtPersonName.value)">
+    Add person
+</button>

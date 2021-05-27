@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Person } from './person/person';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'my-app';
+  personList: Person[] = [
+    new Person(1, 'Arslan'),
+    new Person(2, 'Asim')
+  ]
+
+  onPersonAdded(person: Person) {
+    alert(`${person} has been added to the list.`);
+  }
 }
