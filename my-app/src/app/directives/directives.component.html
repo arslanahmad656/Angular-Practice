@@ -1,0 +1,36 @@
+<h2>Directive Component</h2>
+
+<h3>All Countries In List Format</h3>
+<ul>
+    <li *ngFor="let country of allCountries">
+        <ng-container>
+            {{ country.name | uppercase}} ({{ country.code }})
+        </ng-container>
+    </li>
+</ul>
+
+<hr>
+<h3>Binding with a simple type</h3>
+<select [(ngModel)]="selectedCountryCode">
+    <option *ngFor="let country of allCountries;" [ngValue]="country.code">
+        {{country.name}}
+    </option>
+</select>
+
+{{selectedCountryCode | json}}
+
+<input type="text" (change)="onCountryCodeChanged($event)" #txtCountryCode [value]="selectedCountryCode">
+
+<hr>
+<h3>Binding with a complex type</h3>
+<select [(ngModel)]="selectedCountry">
+    <option *ngFor="let country of allCountries;" [ngValue]="country">
+        {{country.name}}
+    </option>
+</select>
+
+<button (click)="changeSelectedCountry()">
+    Change Selected Country
+</button>
+
+{{selectedCountry | json}}
