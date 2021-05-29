@@ -18,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
+import { PersonService } from './services/person.service';
+import { SampledataComponent } from './sampledata/sampledata.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { LogoutComponent } from './logout/logout.component';
     SubnavComponent,
     LoginComponent,
     HomeComponent,
-    LogoutComponent
+    LogoutComponent,
+    SampledataComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,10 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService],
+  providers: [
+    AuthenticationService,
+    PersonService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

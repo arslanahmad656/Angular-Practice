@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ObservablesComponent } from './observables/observables.component';
+import { SampledataComponent } from './sampledata/sampledata.component';
 import { SubcomponentComponent } from './subcomponent/subcomponent.component';
 import { Subcomponent1Component } from './subcomponent1/subcomponent1.component';
 import { Subcomponent2Component } from './subcomponent2/subcomponent2.component';
@@ -31,6 +32,9 @@ const routes: Routes = [
   },
   {
     path: 'logout', component: LogoutComponent
+  },
+  {
+    path: 'sampledata', component: SampledataComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

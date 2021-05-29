@@ -1,0 +1,15 @@
+<h2>
+    Sample Data
+</h2>
+
+<p *ngIf="hasError; else personsContent">
+    {{errorMessage}}
+</p>
+
+<ng-template #personsContent>
+    <ul>
+        <li *ngFor="let person of personList;">
+            {{person.name}}
+        </li>
+    </ul>
+</ng-template>
