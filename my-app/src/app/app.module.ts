@@ -25,6 +25,7 @@ import { ErrorInterceptorService } from './interceptors/error-interceptor.servic
 import { ShowTwiceDirective } from './custom-directives/show-twice.directive';
 import { CustomDirectivePipeComponent } from './custom-directive-pipe/custom-directive-pipe.component';
 import { TextHighlighterDirective } from './custom-directives/text-highlighter.directive';
+import { TextTransformerPipe } from './pipes/text-transformer.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TextHighlighterDirective } from './custom-directives/text-highlighter.d
     SampledataComponent,
     ShowTwiceDirective,
     CustomDirectivePipeComponent,
-    TextHighlighterDirective
+    TextHighlighterDirective,
+    TextTransformerPipe
   ],
   imports: [
     BrowserModule,

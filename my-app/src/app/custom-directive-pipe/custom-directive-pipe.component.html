@@ -13,3 +13,12 @@
 <p appTextHighlighter backgroundColor="red">Highlighted Text</p>
 <p appTextHighlighter textColor="red">Highlighted Text</p>
 <p appTextHighlighter textColor="green" backgroundColor="yellow">Highlighted Text</p>
+
+<hr>
+<h3>
+    Pipes example
+</h3>
+<p>{{'Transformer 1' | textTransformer}}</p>
+<p>{{'Transformer 2' | textTransformer:'uppercase'}}</p>
+<p>{{'Transformer 3' | textTransformer:'uppercase':3}}</p>
+<p>{{'Transformer 3' | textTransformer: 'uppercase': 3: true}}</p>
