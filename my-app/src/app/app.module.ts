@@ -21,6 +21,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { PersonService } from './services/person.service';
 import { SampledataComponent } from './sampledata/sampledata.component';
 import { TokenInjectorService } from './interceptors/token-injector.service';
+import { ErrorInterceptorService } from './interceptors/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,11 @@ import { TokenInjectorService } from './interceptors/token-injector.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInjectorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
       multi: true
     }
   ],
