@@ -49,4 +49,9 @@ export class AuthenticationService {
     localStorage.removeItem(this.usernameKey);
     return of(true);
   }
+
+  isLoggedIn(): boolean {
+    let tokenValue = localStorage.getItem(this.tokenKey);
+    return tokenValue != undefined;
+  }
 }
