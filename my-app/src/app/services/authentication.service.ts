@@ -19,6 +19,10 @@ export class AuthenticationService {
     this.loginSubject.next(this.isLoggedIn());
    }
 
+  get authenticationTicket(): string {
+    return localStorage.getItem(this.tokenKey) || '';
+  }
+
   login(loginInfo: LoginInfo) {
     console.log('authenticating with', loginInfo);
     let url = 'https://localhost:44356/api/main/validateuser';

@@ -18,11 +18,7 @@ export class PersonService {
 
    getPersons(): Observable<IResponse<IPerson>> {
      let url = 'https://localhost:44356/api/main/getpersons';
-     let getResponse = this.httpClient.get<IResponse<IPerson>>(url, {
-       headers: new HttpHeaders ({
-         'Authorization': `bearer ${localStorage.getItem(this.authenticationService.tokenKey) || ''}`
-       })
-     });
+     let getResponse = this.httpClient.get<IResponse<IPerson>>(url);
 
      return getResponse;
    }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { PersonService } from './services/person.service';
 import { SampledataComponent } from './sampledata/sampledata.component';
+import { TokenInjectorService } from './interceptors/token-injector.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,12 @@ import { SampledataComponent } from './sampledata/sampledata.component';
   ],
   providers: [
     AuthenticationService,
-    PersonService
+    PersonService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInjectorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
