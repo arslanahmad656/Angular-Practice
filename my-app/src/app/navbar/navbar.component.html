@@ -2,13 +2,15 @@
     <li>
         <a routerLink="/home" routerLinkActive="route-active">Home</a>
     </li>
-    <li>
+    <ng-template [ngIf]="isLoggedIn">
+        <li>
+            <a routerLink="/logout" routerLinkActive="router-active">Logout</a>
+        </li>
+        <li>
+            <a routerLink="/sampledata" routerLinkActive="router-active">Sample Data</a>
+        </li>
+    </ng-template>
+    <li *ngIf="!isLoggedIn">
         <a routerLink="/login" routerLinkActive="router-active">Login</a>
-    </li>
-    <li>
-        <a routerLink="/logout" routerLinkActive="router-active">Logout</a>
-    </li>
-    <li>
-        <a routerLink="/sampledata" routerLinkActive="router-active">Sample Data</a>
     </li>
 </ul>

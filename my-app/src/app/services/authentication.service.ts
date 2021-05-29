@@ -3,16 +3,20 @@ import { Injectable } from '@angular/core';
 import { LoginInfo } from '../models/LoginInfo';
 import { map } from 'rxjs/operators'
 import jwt_decode from "jwt-decode"
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable()
 export class AuthenticationService {
+  private readonly loginSubject = new BehaviorSubject(false);
+  
+  readonly loginObserver = this.loginSubject.asObservable();
   readonly usernameKey = 'username';
   readonly tokenKey = 'auth_ticket';
+
   constructor(
     private httpClient: HttpClient
   ) {
-    // empty yet
+    this.loginSubject.next(this.isLoggedIn());
    }
 
   login(loginInfo: LoginInfo) {
@@ -28,6 +32,7 @@ export class AuthenticationService {
             let name = parsed.name;
             localStorage.setItem(this.usernameKey, name);
             localStorage.setItem(this.tokenKey, response.token);
+            this.loginSubject.next(true);
             return true;
           }
           else {
@@ -47,6 +52,7 @@ export class AuthenticationService {
   logout(): Observable<boolean> {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.usernameKey);
+    this.loginSubject.next(false);
     return of(true);
   }
 
