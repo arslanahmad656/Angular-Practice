@@ -1,0 +1,14 @@
+<h2>Home</h2>
+
+<h3 *ngIf="isLoggedIn; else anonymous_block">
+    Welcome {{username}}
+</h3>
+
+<ng-template #anonymous_block>
+    <p class="danger">
+        <i>
+            You are not logged in. Please go to
+            <a routerLink='/login'>login page</a> to login.
+        </i>
+    </p>
+</ng-template>

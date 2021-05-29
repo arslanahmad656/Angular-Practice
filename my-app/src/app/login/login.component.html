@@ -1,0 +1,15 @@
+<h2>Login</h2>
+
+<label>
+    Username: <input [(ngModel)]="loginInfo.login" />
+</label>
+
+<label>
+    Password <input type="password" [(ngModel)]="loginInfo.password" />
+</label>
+
+<button (click)="authenticate()">Login</button>
+
+<p *ngIf="loginError" class="error">
+    Invalid credentials. Could not login.
+</p>

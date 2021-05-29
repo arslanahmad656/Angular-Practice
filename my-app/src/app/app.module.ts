@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,10 @@ import { SubcomponentComponent } from './subcomponent/subcomponent.component';
 import { Subcomponent1Component } from './subcomponent1/subcomponent1.component';
 import { Subcomponent2Component } from './subcomponent2/subcomponent2.component';
 import { SubnavComponent } from './subnav/subnav.component';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './services/authentication.service';
+import { HomeComponent } from './home/home.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +30,18 @@ import { SubnavComponent } from './subnav/subnav.component';
     SubcomponentComponent,
     Subcomponent1Component,
     Subcomponent2Component,
-    SubnavComponent
+    SubnavComponent,
+    LoginComponent,
+    HomeComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
