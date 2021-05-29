@@ -1,13 +1,15 @@
 <h2>Custom Directive Pipes</h2>
 
+<h3>Structural Directive Example</h3>
 <div style="border: 1px solid green">
     <p *appShowTwice="5;repeat:true">
         Repeating many times
     </p>
 </div>
 
-<!-- <div style="border: 1px solid brown">
-    <ng-template [appShowTwice]="">
-        <p>With False</p>
-    </ng-template>
-</div> -->
+<hr>
+<h3>Attribute directive example</h3>
+<p appTextHighlighter>Highlighted Text</p>
+<p appTextHighlighter backgroundColor="red">Highlighted Text</p>
+<p appTextHighlighter textColor="red">Highlighted Text</p>
+<p appTextHighlighter textColor="green" backgroundColor="yellow">Highlighted Text</p>

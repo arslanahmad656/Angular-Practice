@@ -24,6 +24,7 @@ import { TokenInjectorService } from './interceptors/token-injector.service';
 import { ErrorInterceptorService } from './interceptors/error-interceptor.service';
 import { ShowTwiceDirective } from './custom-directives/show-twice.directive';
 import { CustomDirectivePipeComponent } from './custom-directive-pipe/custom-directive-pipe.component';
+import { TextHighlighterDirective } from './custom-directives/text-highlighter.directive';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CustomDirectivePipeComponent } from './custom-directive-pipe/custom-dir
     LogoutComponent,
     SampledataComponent,
     ShowTwiceDirective,
-    CustomDirectivePipeComponent
+    CustomDirectivePipeComponent,
+    TextHighlighterDirective
   ],
   imports: [
     BrowserModule,
