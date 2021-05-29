@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomDirectivePipeComponent } from './custom-directive-pipe/custom-directive-pipe.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -13,6 +14,9 @@ import { Subcomponent2Component } from './subcomponent2/subcomponent2.component'
 const guardedRoutes: Routes = [
   {
     path: 'home', component: HomeComponent
+  },
+  {
+    path: 'customdirectives', component: CustomDirectivePipeComponent
   },
   {
     path: 'login', component: LoginComponent

@@ -22,6 +22,8 @@ import { PersonService } from './services/person.service';
 import { SampledataComponent } from './sampledata/sampledata.component';
 import { TokenInjectorService } from './interceptors/token-injector.service';
 import { ErrorInterceptorService } from './interceptors/error-interceptor.service';
+import { ShowTwiceDirective } from './custom-directives/show-twice.directive';
+import { CustomDirectivePipeComponent } from './custom-directive-pipe/custom-directive-pipe.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ErrorInterceptorService } from './interceptors/error-interceptor.servic
     LoginComponent,
     HomeComponent,
     LogoutComponent,
-    SampledataComponent
+    SampledataComponent,
+    ShowTwiceDirective,
+    CustomDirectivePipeComponent
   ],
   imports: [
     BrowserModule,
