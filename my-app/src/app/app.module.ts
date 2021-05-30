@@ -26,6 +26,8 @@ import { ShowTwiceDirective } from './custom-directives/show-twice.directive';
 import { CustomDirectivePipeComponent } from './custom-directive-pipe/custom-directive-pipe.component';
 import { TextHighlighterDirective } from './custom-directives/text-highlighter.directive';
 import { TextTransformerPipe } from './pipes/text-transformer.pipe';
+import { MyLibTestComponent } from './my-lib-test/my-lib-test.component';
+import { DataProviderService, LibProviderModule } from 'lib-provider';
 
 @NgModule({
   declarations: [
@@ -46,17 +48,20 @@ import { TextTransformerPipe } from './pipes/text-transformer.pipe';
     ShowTwiceDirective,
     CustomDirectivePipeComponent,
     TextHighlighterDirective,
-    TextTransformerPipe
+    TextTransformerPipe,
+    MyLibTestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LibProviderModule
   ],
   providers: [
     AuthenticationService,
     PersonService,
+    DataProviderService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInjectorService,

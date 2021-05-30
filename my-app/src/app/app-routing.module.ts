@@ -4,6 +4,7 @@ import { CustomDirectivePipeComponent } from './custom-directive-pipe/custom-dir
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { MyLibTestComponent } from './my-lib-test/my-lib-test.component';
 import { ObservablesComponent } from './observables/observables.component';
 import { SampledataComponent } from './sampledata/sampledata.component';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -26,6 +27,9 @@ const guardedRoutes: Routes = [
   },
   {
     path: 'sampledata', component: SampledataComponent, canActivate: [AuthGuardService]
+  },
+  {
+    path: 'libtest', component: MyLibTestComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
