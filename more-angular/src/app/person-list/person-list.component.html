@@ -1,0 +1,13 @@
+<h2>
+    Persons
+</h2>
+
+<ul>
+    <li *ngFor="let person of personList" (click)="openPersonDetails(person)">
+        {{person.name}}
+    </li>
+</ul>
+
+<div *ngIf="redirectedFromMessage">
+    {{redirectedFromMessage}}
+</div>
