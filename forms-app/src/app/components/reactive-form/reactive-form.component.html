@@ -1,27 +1,35 @@
 <div class="container">
     <h2>Template Driven Forms</h2>
-    {{registrationModel.value | json}}
+    {{registrationModel.value | json}} <hr>
+    {{registrationModel.errors | json}} <hr>
+    {{address?.errors | json}} <hr>
+    Touched: {{street?.touched | json}} <br>
+    Valid: {{street?.valid | json}}
+    <hr>        
 
     <form [formGroup]="registrationModel">
         <div class="form-group">
             <label>Username</label>
-            <input formControlName="username" type="text" class="form-control" placeholder="Username">
-        </div>
+            <input [class.is-invalid]="username?.touched && username?.invalid" formControlName="username" type="text" class="form-control" placeholder="Username">
+            <small [class.d-none]="username?.untouched || username?.valid" class="text-danger"><i>Username is required.</i></small>
+        </div>  
         <div class="form-group">
             <label>Password</label>
             <input formControlName="password" type="password" class="form-control" placeholder="Password">
         </div>
         <div class="form-group">
             <label>Confirm Password</label>
-            <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+            <input [class.is-invalid]="password?.touched && confirmPassword?.touched && registrationModel.errors?.mismatch" formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+            <small class="text-danger" [class.d-none]="password?.untouched || confirmPassword?.untouched || !registrationModel.errors?.mismatch"><i>Passwords do not match.     </i></small>
         </div>
 
         <div class="form-group" formGroupName="address">
             <label>Primary Address</label>
-            <input formControlName="street" type="text" class="form-control" placeholder="Street">
-            <input type="text" formControlName="city" class="form-control my-2" placeholder="City">
-            <input type="text" formControlName="state" class="form-control my-2" placeholder="State">
-            <input type="text" formControlName="country" class="form-control my-2" placeholder="Country">
+            <input [class.is-invalid]="street?.touched && street?.invalid" formControlName="street" type="text" class="form-control" placeholder="Street">
+            <input [class.is-invalid]="city?.touched && city?.invalid" type="text" formControlName="city" class="form-control my-2" placeholder="City">
+            <input [class.is-invalid]="state?.touched && state?.invalid" type="text" formControlName="state" class="form-control my-2" placeholder="State">
+            <input [class.is-invalid]="country?.touched && country?.invalid" type="text" formControlName="country" class="form-control my-2" placeholder="Country">
+            <small [class.d-none]="street?.untouched || city?.untouched || state?.untouched || country?.untouched || !address?.errors?.groupRequired" class="text-danger"><i>Field/s {{address?.errors?.fields?.join()}} has / have not been provided.</i></small>
         </div>
 
         <input class="btn btn-primary" type="submit" value="Register">
