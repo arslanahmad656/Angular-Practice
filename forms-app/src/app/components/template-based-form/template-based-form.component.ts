@@ -47,6 +47,8 @@ export class TemplateBasedFormComponent implements OnInit {
       },
       subscribeForNews: false
     }
+
+    this.setInterestValue(this.registrationModel.interest);
   }
 
   setInterestValue(interest: string): void {
