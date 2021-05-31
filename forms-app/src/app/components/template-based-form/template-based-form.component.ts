@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BootcampRegistration } from 'src/app/models/BootcampRegistration';
 import { Shift } from 'src/app/models/Shift';
+import { bootcampInterests } from 'src/app/models/static-data';
 
 @Component({
   selector: 'app-template-based-form',
@@ -9,6 +10,7 @@ import { Shift } from 'src/app/models/Shift';
 })
 export class TemplateBasedFormComponent implements OnInit {
   registrationModel: BootcampRegistration;
+  readonly interests: string[];
 
   constructor() { 
     this.registrationModel = {
@@ -25,6 +27,8 @@ export class TemplateBasedFormComponent implements OnInit {
       shift: Shift.Evening,
       subscribeForNews: false
     };
+
+    this.interests = bootcampInterests.map(i => i[1]);
   }
 
   ngOnInit(): void {
@@ -33,7 +37,7 @@ export class TemplateBasedFormComponent implements OnInit {
       email: 'asim_456@outlook.com',
       interest: '',
       phone: '030077778811',
-      shift: Shift.Morning,
+      shift: Shift.Default,
       address: {
         street: 'Mughal Pura',
         city: 'Shakargarh'
