@@ -25,14 +25,14 @@ export class PersonComponent implements OnInit {
   }
 
   navigateNext() {
-    this.router.navigate(['person', (this.person?.id || 0) + 1]);
+    this.router.navigate(['persons', (this.person?.id || 0) + 1]);
   }
 
   navigatePrevious() {
-    this.router.navigate(['person', (this.person?.id || 0) - 1]);
+    this.router.navigate(['persons', (this.person?.id || 0) - 1]);
   }
 
   goBack() {
-    this.router.navigate(['persons', {id: this.person?.id}])
+    this.router.navigate(['../', {id: this.person?.id}], {relativeTo: this.activateRoute});
   }
 }

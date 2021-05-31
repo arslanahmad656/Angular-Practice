@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'persons', component: PersonListComponent
   },
   {
-    path: 'person/:id', component: PersonComponent
+    path: 'persons/:id', component: PersonComponent
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

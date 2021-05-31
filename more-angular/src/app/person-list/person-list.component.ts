@@ -32,6 +32,6 @@ export class PersonListComponent implements OnInit {
   }
 
   openPersonDetails(person: IPerson) {
-    this.router.navigate(['person', person.id]);
+    this.router.navigate([person.id], {relativeTo: this.activateRoute});
   }
 }
