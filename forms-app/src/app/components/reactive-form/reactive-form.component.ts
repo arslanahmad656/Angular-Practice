@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-form',
@@ -9,18 +9,22 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ReactiveFormComponent implements OnInit {
   registrationModel: FormGroup;
   
-  constructor() { 
-    this.registrationModel = new FormGroup({
-      username: new FormControl('Usman'),
-      password: new FormControl(''),
-      confirmPassword: new FormControl(''),
-      address: new FormGroup({
-        street: new FormControl(''),
-        city: new FormControl('Shakargarh'),
-        state: new FormControl(''),
-        country: new FormControl('')
+  constructor(
+    private readonly formBuilder: FormBuilder
+    ) {
+    let group = this.formBuilder.group.bind(this.formBuilder);
+    let control = this.formBuilder.control.bind(this.formBuilder);
+    this.registrationModel = group({
+      username: control('Usman'),
+      password: control(''),
+      confirmPassword: control(''),
+      address: group({
+        street: control(''),
+        city: control('Shakargarh'),
+        state: control(''),
+        country: control('')
       })
-    })
+    });
   }
 
   ngOnInit(): void {
