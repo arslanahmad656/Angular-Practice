@@ -1,18 +1,27 @@
 <div class="container">
     <h2>Template Driven Forms</h2>
+    {{registrationModel.value | json}}
 
-    <form>
+    <form [formGroup]="registrationModel">
         <div class="form-group">
             <label>Username</label>
-            <input type="text" class="form-control" placeholder="Username">
+            <input formControlName="username" type="text" class="form-control" placeholder="Username">
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" placeholder="Password">
+            <input formControlName="password" type="password" class="form-control" placeholder="Password">
         </div>
         <div class="form-group">
             <label>Confirm Password</label>
-            <input type="password" class="form-control" placeholder="Confirm Password">
+            <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+        </div>
+
+        <div class="form-group" formGroupName="address">
+            <label>Primary Address</label>
+            <input formControlName="street" type="text" class="form-control" placeholder="Street">
+            <input type="text" formControlName="city" class="form-control my-2" placeholder="City">
+            <input type="text" formControlName="state" class="form-control my-2" placeholder="State">
+            <input type="text" formControlName="country" class="form-control my-2" placeholder="Country">
         </div>
 
         <input class="btn btn-primary" type="submit" value="Register">
