@@ -1,12 +1,4 @@
 <h2>Template Based Form</h2>
-
-{{registrationModel | json}}
-<hr>
-Touched: {{shift_morning.touched}} {{shift_evening.touched}} <br>
-Valid: {{shift_morning.valid}} {{shift_evening.valid}} <br>
-{{shift_morning.errors | json}} <br>
-{{shift_evening.errors | json }}
-<hr>
 <div class="container">
     <form>
         <div class="form-group row">
@@ -14,6 +6,7 @@ Valid: {{shift_morning.valid}} {{shift_evening.valid}} <br>
             <div class="col-sm-10">
                 <input #name="ngModel" name="name" required type="text" [class.is-invalid]="name.touched && name.invalid"
                  class="form-control" placeholder="Full name" [(ngModel)]="registrationModel.name">
+                 <small class="text-danger" [class.d-none]="name.untouched || name.valid">Name is required.</small>
             </div>
         </div>
         <div class="form-group row">
@@ -21,6 +14,7 @@ Valid: {{shift_morning.valid}} {{shift_evening.valid}} <br>
             <div class="col-sm-10">
                 <input #email="ngModel" name="email" required type="email" class="form-control" [class.is-invalid]="email.touched && email.invalid"
                 placeholder="Email address" [(ngModel)]="registrationModel.email">
+                <small class="text-danger" [class.d-none]="email.untouched || email.valid">Email is required.</small>
             </div>
         </div>
         <div class="form-group row">
@@ -28,26 +22,34 @@ Valid: {{shift_morning.valid}} {{shift_evening.valid}} <br>
             <div class="col-sm-10">
                 <input #phone="ngModel" name="phone" required type="tel" [class.is-invalid]="phone.touched && phone.invalid"
                 class="form-control" placeholder="Phone Number" [(ngModel)]="registrationModel.phone">
+                <small class="text-danger" [class.d-none]="phone.untouched || phone.valid">Phone number is required.</small>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Full Address</label>
             <div class="col-sm-10">
                 <input #address_street="ngModel" [class.is-invalid]="address_street.touched && address_street.invalid" required name="address_street" type="text" class="form-control" placeholder="Street" [(ngModel)]="registrationModel.address.street"> <br/>
+                <small class="text-danger" [class.d-none]="address_street.untouched || address_street.valid">Street address is required.</small>
+
                 <input #address_city="ngModel" [class.is-invalid]="address_city.touched && address_city.invalid" required name="address_city" type="text" class="form-control" placeholder="City" [(ngModel)]="registrationModel.address.city"> <br>
+                <small class="text-danger" [class.d-none]="address_city.untouched || address_city.valid">State is required.</small>
+
                 <input #address_state="ngModel" [class.is-invalid]="address_state.touched && address_state.invalid" name="address_state" type="text" class="form-control" placeholder="State" [(ngModel)]="registrationModel.address.state"> <br>
+
                 <input #address_country="ngModel" [class.is-invalid]="address_country.touched && address_country.invalid" name="address_country" type="text" class="form-control" placeholder="Country" [(ngModel)]="registrationModel.address.country">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Interest</label>
             <div class="col-sm-10">
-                <select #interest="ngModel" [class.is-invalid]="interest.touched && interest.invalid" required name="interest" class="form-control" [(ngModel)]="registrationModel.interest">
+                <select #interest="ngModel" (blur)="setInterestValue(interest.value)" (change)="setInterestValue(interest.value)"
+                 [class.is-invalid]="interest.touched && !interestValid" required name="interest" class="form-control" [(ngModel)]="registrationModel.interest">
                     <option value="" disabled selected hidden>Interest</option>
                     <option *ngFor="let interest of interests" [value]="interest">
                         {{interest}}
                     </option>
                 </select>
+                <small class="text-danger" [class.d-none]="interest.untouched || interestValid      ">Interest is required.</small>
             </div>
         </div>
         <fieldset class="form-group">
@@ -66,6 +68,7 @@ Valid: {{shift_morning.valid}} {{shift_evening.valid}} <br>
                   Evening (3PM - 6PM)
                 </label>
               </div>
+              <small class="text-danger" [class.d-none]="shift_morning.untouched || shift_morning.valid || shift_evening.untouched || shift_evening.valid">Shift is required.</small>
             </div>
           </div>
         </fieldset>

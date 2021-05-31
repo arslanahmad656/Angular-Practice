@@ -10,6 +10,8 @@ import { bootcampInterests } from 'src/app/models/static-data';
 })
 export class TemplateBasedFormComponent implements OnInit {
   registrationModel: BootcampRegistration;
+  interestValid: boolean;
+  
   readonly interests: string[];
 
   constructor() { 
@@ -29,13 +31,14 @@ export class TemplateBasedFormComponent implements OnInit {
     };
 
     this.interests = bootcampInterests.map(i => i[1]);
+    this.interestValid = false;
   }
 
   ngOnInit(): void {
     this.registrationModel = {
       name: 'Asim Kabeer',
       email: 'asim_456@outlook.com',
-      interest: '',
+      interest: 'i am this    ',
       phone: '030077778811',
       shift: Shift.Default,
       address: {
@@ -46,4 +49,7 @@ export class TemplateBasedFormComponent implements OnInit {
     }
   }
 
+  setInterestValue(interest: string): void {
+    this.interestValid = this.interests.indexOf(interest) > -1;
+  }
 }
