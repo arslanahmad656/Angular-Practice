@@ -1,6 +1,6 @@
 <h2>Template Based Form</h2>
 <div class="container">
-    <form #form="ngForm">
+    <form #form="ngForm" novalidate (ngSubmit)="onsubmit()">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Full Name</label>
             <div class="col-sm-10">

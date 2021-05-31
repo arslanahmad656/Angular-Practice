@@ -54,4 +54,9 @@ export class TemplateBasedFormComponent implements OnInit {
   setInterestValue(interest: string): void {
     this.interestValid = this.interests.indexOf(interest) > -1;
   }
+
+  onsubmit() {
+    console.log(this.registrationModel);
+    alert('Data has been submitted.');
+  }
 }
