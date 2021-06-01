@@ -103,11 +103,13 @@ export class ReactiveFormComponent implements OnInit {
     return formGroup;
   }
 
-  test(arg: any) {
-    debugger;
-    let control = arg as AbstractControl;
-    let city = control?.get('city');
-    console.log(arg);
+  submit() {
+    if (this.registrationModel.invalid) {
+      alert('Form is invalid. Cannot submit an invalid form.');
+    } else {
+      console.log(this.registrationModel);
+      alert('Form has been submitted.');
+    }
   }
 
 }

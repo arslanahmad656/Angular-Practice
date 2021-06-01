@@ -1,11 +1,7 @@
 <div class="container">
-    <h2>Template Driven Forms</h2>
-    {{registrationModel.value | json}} <hr>
-    {{registrationModel.errors | json}} <hr>
-    {{email?.errors | json}} <hr>
-    <hr>        
-
-    <form [formGroup]="registrationModel">
+    <h2>Template Driven Forms</h2>       
+    Form Valid: {{registrationModel.valid | json}}
+    <form [formGroup]="registrationModel" (ngSubmit)="submit()">
         <div class="form-group">
             <label>Username</label>
             <input [class.is-invalid]="username?.touched && username?.invalid" formControlName="username" type="text" class="form-control" placeholder="Username">
@@ -56,9 +52,9 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-sm btn-secondary ml-1" (click)="addAddress()">Add alternate address</button>
+            <button type="button" class="btn btn-sm btn-secondary ml-1" (click)="addAddress()">Add alternate address</button>
         </div>
 
-        <input class="btn btn-primary" type="submit" value="Register">
+        <input [disabled]="registrationModel.invalid" class="btn btn-primary" type="submit" value="Register">
     </form>
 </div>
