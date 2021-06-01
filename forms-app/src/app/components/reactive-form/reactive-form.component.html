@@ -1,7 +1,5 @@
 <div class="container">
-    <h2>Template Driven Forms</h2>       
-    Form Valid: {{registrationModel.valid | json}}
-    <form [formGroup]="registrationModel" (ngSubmit)="submit()">
+    <form [formGroup]="registrationModel" novalidate (ngSubmit)="submit()">
         <div class="form-group">
             <label>Username</label>
             <input [class.is-invalid]="username?.touched && username?.invalid" formControlName="username" type="text" class="form-control" placeholder="Username">
