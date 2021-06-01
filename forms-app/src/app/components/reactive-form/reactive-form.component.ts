@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControlOptions } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControlOptions, FormArray, AbstractControl } from '@angular/forms';
 import { formGroupRequiredValidator } from 'src/app/validators/form-group-required.validator';
 import { sameNameValidator } from 'src/app/validators/same-name.validator';
 
@@ -46,24 +46,26 @@ export class ReactiveFormComponent implements OnInit {
   get address() {
     return this.registrationModel.get('address');
   }
+
+  get alternateAddresses(): FormArray {
+    return this.registrationModel.get('alternateAddresses') as FormArray;
+  }
   
   constructor(
     private readonly formBuilder: FormBuilder
     ) {
     let group = this.formBuilder.group.bind(this.formBuilder);
     let control = this.formBuilder.control.bind(this.formBuilder);
+    let array = this.formBuilder.array.bind(this.formBuilder);
+
     this.registrationModel = group({
       username: control('', Validators.required),
       password: control('', Validators.required),
       confirmPassword: control('', Validators.required),
       email: control('', [Validators.email]),
       subscribe: control(false),
-      address: group({
-        street: control('', Validators.required),
-        city: control('Shakargarh', Validators.required),
-        state: control(''),
-        country: control('', Validators.required)
-      }, {validator: formGroupRequiredValidator(['street', 'city', 'country'])} as AbstractControlOptions)
+      address: this.createAddressFields(),
+      alternateAddresses: array([])
     }, {validator: sameNameValidator(['password', 'confirmPassword'])} as AbstractControlOptions);
   }
 
@@ -78,6 +80,34 @@ export class ReactiveFormComponent implements OnInit {
 
       this.email?.updateValueAndValidity();
     })
+  }
+
+  addAddress() {
+    let addressGroup = this.createAddressFields('', 'Lahore');
+    this.alternateAddresses.push(addressGroup);
+  }
+
+  createAddressFields(street = '', city = '', state = '', country = ''): FormGroup {
+    let group = this.formBuilder.group.bind(this.formBuilder);
+    let control = this.formBuilder.control.bind(this.formBuilder);
+    
+    let formGroup: FormGroup = group({
+      street: control(street, Validators.required),
+      city: control(city, Validators.required),
+      state: control(state),
+      country: control(country, Validators.required)
+    });
+    formGroup.setValidators(formGroupRequiredValidator(['street', 'city', 'country']));
+    formGroup.updateValueAndValidity();
+
+    return formGroup;
+  }
+
+  test(arg: any) {
+    debugger;
+    let control = arg as AbstractControl;
+    let city = control?.get('city');
+    console.log(arg);
   }
 
 }

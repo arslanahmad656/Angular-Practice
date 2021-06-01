@@ -44,6 +44,21 @@
             <small [class.d-none]="street?.untouched || city?.untouched || state?.untouched || country?.untouched || !address?.errors?.groupRequired" class="text-danger"><i>Field/s {{address?.errors?.fields?.join()}} has / have not been provided.</i></small>
         </div>
 
+        <div formArrayName="alternateAddresses" *ngFor="let address of alternateAddresses.controls; let i = index">
+            <div class="form-group" [formGroupName]="i">
+            <label>Alternate Address {{i + 1}}</label>
+            <input [class.is-invalid]="address.get('street')?.touched && address.get('street')?.invalid" formControlName="street" type="text" class="form-control" placeholder="Street">
+            <input [class.is-invalid]="address.get('city')?.touched && address.get('city')?.invalid" type="text" formControlName="city" class="form-control my-2" placeholder="City">
+            <input [class.is-invalid]="address.get('state')?.touched && address.get('state')?.invalid" type="text" formControlName="state" class="form-control my-2" placeholder="State">
+            <input [class.is-invalid]="address.get('country')?.touched && address.get('country')?.invalid" type="text" formControlName="country" class="form-control my-2" placeholder="Country">
+            <small [class.d-none]="address.get('street')?.untouched || address.get('city')?.untouched || address.get('state')?.untouched || address.get('country')?.untouched || !address?.errors?.groupRequired" class="text-danger"><i>Field/s {{address?.errors?.fields?.join()}} has / have not been provided.</i></small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-sm btn-secondary ml-1" (click)="addAddress()">Add alternate address</button>
+        </div>
+
         <input class="btn btn-primary" type="submit" value="Register">
     </form>
 </div>
