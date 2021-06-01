@@ -23,6 +23,10 @@ export class ReactiveFormComponent implements OnInit {
     return this.registrationModel.get('confirmPassword');
   }
 
+  get email() {
+    return this.registrationModel.get('email');
+  }
+
   get street() {
     return this.registrationModel.get('address')?.get('street');
   }
@@ -52,6 +56,8 @@ export class ReactiveFormComponent implements OnInit {
       username: control('', Validators.required),
       password: control('', Validators.required),
       confirmPassword: control('', Validators.required),
+      email: control('', [Validators.email]),
+      subscribe: control(false),
       address: group({
         street: control('', Validators.required),
         city: control('Shakargarh', Validators.required),
@@ -62,6 +68,16 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.registrationModel.get('subscribe')?.valueChanges.subscribe((subscribed: boolean) => {
+      console.log('Subscribed value', subscribed);
+      if (subscribed) {
+        this.email?.setValidators([Validators.required, Validators.email]);
+      } else {
+        this.email?.setValidators(Validators.email);
+      }
+
+      this.email?.updateValueAndValidity();
+    })
   }
 
 }

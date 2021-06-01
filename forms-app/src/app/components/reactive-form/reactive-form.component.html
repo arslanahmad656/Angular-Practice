@@ -2,9 +2,7 @@
     <h2>Template Driven Forms</h2>
     {{registrationModel.value | json}} <hr>
     {{registrationModel.errors | json}} <hr>
-    {{address?.errors | json}} <hr>
-    Touched: {{street?.touched | json}} <br>
-    Valid: {{street?.valid | json}}
+    {{email?.errors | json}} <hr>
     <hr>        
 
     <form [formGroup]="registrationModel">
@@ -21,6 +19,20 @@
             <label>Confirm Password</label>
             <input [class.is-invalid]="password?.touched && confirmPassword?.touched && registrationModel.errors?.mismatch" formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password">
             <small class="text-danger" [class.d-none]="password?.untouched || confirmPassword?.untouched || !registrationModel.errors?.mismatch"><i>Passwords do not match.     </i></small>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input [class.is-invalid]="email?.touched && email?.invalid" formControlName="email" type="email" class="form-control" placeholder="Email Address">
+            <div class="text-danger" *ngIf="email?.touched && email?.errors">
+                <small *ngIf="email?.errors?.required"><i>Email address is required.</i></small>
+                <small *ngIf="email?.errors?.email"><i>Value must be a valid email.</i></small>
+            </div>
+        </div>
+
+        <div class="form-group ml-4">
+            <input type="checkbox" class="form-check-input" formControlName="subscribe" id="subscribe">
+            <label for="subscribe" class="form-check-label">Subscribe for notifications.</label>
         </div>
 
         <div class="form-group" formGroupName="address">
